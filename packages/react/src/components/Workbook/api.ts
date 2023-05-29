@@ -298,10 +298,10 @@ export function generateAPIs(
     handleUndo,
     handleRedo,
 
-    calculateFormula: () => {
+    calculateFormula: (sheetIndex: number) => {
       setContext((draftCtx) => {
-        _.forEach(draftCtx.luckysheetfile, (sheet_obj) => {
-          api.calculateSheetFromula(draftCtx, sheet_obj.id as string);
+        _.forEach(draftCtx.luckysheetfile, (sheet_obj: any) => {
+          api.calculateSheetFromula(draftCtx, sheet_obj.id as string, sheetIndex);
         });
       });
     },

@@ -137,7 +137,7 @@ export function copySheet(ctx: Context, sheetId: string) {
   api.setSheetOrder(ctx, sheetOrderList);
 }
 
-export function calculateSheetFromula(ctx: Context, id: string) {
+export function calculateSheetFromula(ctx: Context, id: string, sheetIndex?: number) {
   const index = getSheetIndex(ctx, id) as number;
   if (!ctx.luckysheetfile[index].data) return;
   for (let r = 0; r < ctx.luckysheetfile[index].data!.length; r += 1) {
@@ -152,7 +152,7 @@ export function calculateSheetFromula(ctx: Context, id: string) {
         c,
         id
       );
-      api.setCellValue(ctx, r, c, result[1], null);
+      api.setCellValue(ctx, r, c, result[1], null, { index: sheetIndex });
       insertUpdateFunctionGroup(ctx, r, c, id);
     }
   }
